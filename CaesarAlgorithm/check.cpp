@@ -12,8 +12,14 @@ bool isValidLine(const std::string& rhs) {
 
 void init_command(std::string& command) {
     std::cout << "Enter command (decode/encode) : ";
-    std::cin >> command;
-    
+    do {
+        std::cin >> command;
+        if (isValidCommand(command)) {
+            break;
+        }
+        std::cout << "The line conntanes wrong componenets" << std::endl;
+        std::cout << "Enter Line For decode/encode : ";
+    } while (true);
 }
 
 void init_line(std::string& line) {
@@ -41,3 +47,19 @@ void init_step(int& step) {
     } while (true);
 }
 
+
+std::string toLowerCase(std::string& command) {
+    for (int i = 0; i < command.size(); ++i) {
+        if (command[i] >= 'A' && command[i] <= 'Z') {
+            command[i] += 32;
+        }
+    }
+    return command;
+}
+
+bool isValidCommand(std::string& rhs) {
+    if ((toLowerCase(rhs) == "decode") || (toLowerCase(rhs) == "encode")) {
+        return true;
+    }
+    return false;
+}
