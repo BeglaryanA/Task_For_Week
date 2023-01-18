@@ -3,9 +3,13 @@
 
 int main() {
     BitVector bitvector;
-    bitvector.set(4, 1);
-    std::cout << bitvector.get(4);
-    bitvector.set(44);
+    bitvector.set(28, 1);
+    std::cout << "ARAJIN " << bitvector.get(28) << std::endl;
+  	bitvector.set(29, 1);
+	bitvector.set(28, 0);
+	std::cout << "29 -> " << bitvector.get(29) << std::endl;
+	std::cout << "2rd " << bitvector.get(28) << std::endl;
+	bitvector.set(44, 0);
     std::cout << bitvector.get(44);
 
 

@@ -24,7 +24,7 @@ void BitVector::set(const int position, const bool value) {
     int ind = position / sizeof(int) * 8;
     int pos = position - (ind * (sizeof(int) * 8));
     if (value)  { m_arr[ind] |= (value << pos); }
-    else { m_arr[ind] &= (value << pos); }
+    else { m_arr[ind] &= ~(1 << pos); }
 }
 
 bool BitVector::get(const int position) {
