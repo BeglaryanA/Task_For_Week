@@ -14,6 +14,9 @@ int main() {
     // DataValidation::ValidNumber(string)
     // DataValidation::ValidURL(string: URL)
     // for format call initilize_date
+    std::cin >> email;
+    std::cout << std::boolalpha << checking.ValidEamil(email);
+
 
 }
 

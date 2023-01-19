@@ -27,28 +27,41 @@ bool DataValidation::ValidEamil(const std::string& emailForCheck) {
 
     std::string RecipientName(emailForCheck.begin(), atIt);
     if (!isValidRecipient(RecipientName)) { 
+        std::cout << "STE1" << std::endl;
         return false; 
     }
 
     std::string DomainName(atIt + 1, emailForCheck.end());
+
     if (*DomainName.begin() == hyphen
-                || *DomainName.begin() == dot) { return false; }
+                || *DomainName.begin() == dot) { 
+                    std::cout << "SET6" << std::endl;
+                    return false; 
+                }
+
     if (*(DomainName.end() - 1) == hyphen
                 || *(DomainName.end() - 1) == dot) { return false; }
     
-    if (!isValidDomain(DomainName)) { return false; }
+    if (!isValidDomain(DomainName)) { 
+        std::cout << "SET5" << std::endl;
+        return false; 
+    }
+
     return true;
 }
 
 bool DataValidation::isValidRecipient(const std::string& RecipientName) {
     if (!(isValidSymbol(*RecipientName.begin()))) {
+        std::cout << "SET2" << std::endl;
         return false;
     }
     if (!(isValidSymbol(*(RecipientName.end() - 1)))) {
+        std::cout << "SET3" << std::endl;
         return false;
     }
     for (auto it = RecipientName.begin(); it < RecipientName.end() - 1; ++it) {
         if (!(isValidSymbol(*it) || isValidSymbol(*(it + 1)))) {
+            std::cout << "SET4" << std::endl;
             return false;
         }
     }
@@ -57,12 +70,14 @@ bool DataValidation::isValidRecipient(const std::string& RecipientName) {
 
 bool DataValidation::isValidDomain(const std::string& DomainName) {
     for (auto it = DomainName.begin(); it < DomainName.end() - 1; ++it) {
+        if (!isValidSymbol(*it)) {
+            if ((*it != hyphen && *it != dot)) { return false; }
+        }
         if (!(isValidSymbol(*it) || isValidSymbol(*(it + 1)))) {
+            std::cout << "E" << std::endl;
             return false;
         } 
-        if (!isValidSymbol(*it)) {
-            if ((*it != hyphen || *it != dot)) { return false; }
-        }
+        
     }
     return true;
 }
